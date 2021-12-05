@@ -1,4 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap");
+
+body {
+  background: url(https://images.unsplash.com/photo-1543589077-47d81606c1bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  width: fit-content;
+  padding: 1rem 2rem;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10%;
+  border: rgb(167, 29, 29) dashed 2px;
+}
+
+ul {
+  width: fit-content;
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Mountains of Christmas";
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p,
+li {
+  font-size: 1.5rem;
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  margin: 2px 0;
 }

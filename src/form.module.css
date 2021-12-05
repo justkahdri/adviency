@@ -1,0 +1,31 @@
+:root {
+    --font-size: 16px;
+    --form-height: 30px;
+  }
+  
+  .present-form {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 2rem auto;
+    height: var(--form-height);
+  }
+  
+  .present-input {
+    border-radius: 0%;
+    font-size: var(--font-size);
+    border: none;
+    padding: 4px;
+    height: 100%;
+  }
+  
+  .arrow {
+    margin-left: 6px;
+    color: rgb(109, 111, 223);
+    height: 38px;
+    border: none;
+    font-size: 24px;
+    line-height: 10px;
+    background: rgb(129, 34, 34);
+  }
+  
