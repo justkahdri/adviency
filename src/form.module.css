@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+}
+
+.add {
+    border: none;
+    cursor: pointer;
+    background: rgb(55, 55, 177);
+    color: white;
+    border-radius: 10%;
+    margin-left: 8px;
+}
