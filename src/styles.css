@@ -5,6 +5,8 @@
   --grey-opacity: rgba(51, 51, 51, 0.6);
   --red: rgb(212, 67, 67);
   --dark-red: rgb(190, 46, 46);
+  --dark: rgb(32, 32, 32);
+  --white-opacity: rgba(255, 255, 255, 0.2);
 }
 
 body {
@@ -35,7 +37,7 @@ h1 {
 }
 
 .App {
-  background: url('https://images.unsplash.com/photo-1545153599-04d92985fe97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background: url('https://images.unsplash.com/photo-1509629555017-fb1950574d52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
   background-size: cover;
   background-repeat: no-repeat;
   backdrop-filter: blur(5px);
@@ -47,10 +49,11 @@ h1 {
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: rgb(32, 32, 32);
-  width: 100%;
-  padding: 16px 30vw;
+  background-color: rgba(238, 217, 101, .7);
+  color: var(--dark);
+  width: 50%;
+  border-radius: 12px;
+  padding: 16px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -59,10 +62,29 @@ h1 {
 
 form {
   display: flex;
+  color: white;
+  align-items: flex-end;
 }
 
-input {
+form small {
+  margin: 0 0 2px 3px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+div.present-name {
   flex: 1;
+}
+
+div.present-quantity {
+  width: 20%;
+}
+
+button.add-button {
+  height: 29px;
 }
 
 input, button {
