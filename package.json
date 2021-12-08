@@ -1,6 +1,7 @@
 {
   "name": "adviency",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "Vamos a hacer la misma aplicación 24 días seguidos, desde 0, agregando algo nuevo todos los días.\n\nTenemos que hacer una lista de regalos de navidad!",
   "keywords": [],
   "main": "src/index.tsx",
