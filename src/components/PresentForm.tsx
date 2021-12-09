@@ -7,6 +7,7 @@ import {PresentsContext} from "../contexts/PresentsProvider";
 const PresentForm = () => {
   const presentName = useRef() as MutableRefObject<HTMLInputElement>;
   const presentQuantity = useRef() as MutableRefObject<HTMLInputElement>;
+  const presentImage = useRef() as MutableRefObject<HTMLInputElement>;
 
   const {addPresent} = useContext(PresentsContext);
 
@@ -14,17 +15,24 @@ const PresentForm = () => {
     e.preventDefault();
     const name = presentName.current.value;
     const quantity = Number(presentQuantity.current.value);
+    const img = presentImage.current.value;
 
-    addPresent({name, quantity});
+    addPresent({name, quantity, img});
+
+    presentImage.current.value = presentName.current.value = presentQuantity.current.value = "";
   };
 
   return (
     <Stack as="form" direction="row" onSubmit={handleSubmit}>
-      <FormControl isRequired id="name">
+      <FormControl isRequired flex={4} id="name">
         <FormLabel>Regalo</FormLabel>
         <Input ref={presentName} type="text" />
       </FormControl>
-      <FormControl isRequired id="quantity" width="fit-content">
+      <FormControl isRequired flex={2} id="image">
+        <FormLabel>URL de Imagen</FormLabel>
+        <Input ref={presentImage} type="text" />
+      </FormControl>
+      <FormControl isRequired flex={1} id="quantity">
         <FormLabel>Cantidad</FormLabel>
         <Input ref={presentQuantity} type="number" />
       </FormControl>

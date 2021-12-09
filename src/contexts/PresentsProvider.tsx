@@ -7,8 +7,16 @@ const loadFromLocalStorage = () => {
     return JSON.parse(localPresents) as PresentT[];
   } else {
     return [
-      {name: "🧸 Juguetes", quantity: 2},
-      {name: "🚁 Helicoptero", quantity: 5},
+      {
+        name: "🧸 Juguetes",
+        quantity: 2,
+        img: "https://images.unsplash.com/photo-1581312742770-ce89199554af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+      },
+      {
+        name: "🍫 Chocolates",
+        quantity: 5,
+        img: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80",
+      },
     ];
   }
 };
@@ -29,7 +37,7 @@ const PresentsProvider: FC = ({children}) => {
     window.localStorage.setItem("presents", JSON.stringify(presents));
   }, [presents]);
 
-  const addPresent = ({name, quantity}: PresentT) => {
+  const addPresent = ({name, quantity, img}: PresentT) => {
     const repeatedPresent = presents.find((p) => p.name === name);
 
     if (repeatedPresent) {
@@ -37,7 +45,7 @@ const PresentsProvider: FC = ({children}) => {
 
       setPresents(presents.map((p) => (p.name == name ? updatedPresent : p)));
     } else {
-      setPresents((p) => [{name, quantity}, ...p]);
+      setPresents((p) => [{name, quantity, img}, ...p]);
     }
   };
 

@@ -20,11 +20,20 @@ const App = () => {
       backgroundRepeat="noRepeat"
       backgroundSize="cover"
       className="App"
-      color="white"
       justify="center"
       minH="100vh"
     >
-      <Stack bg="rgba(39, 103, 73, .9)" p={6} rounded="md" spacing={12}>
+      <Stack
+        backdropFilter="blur(5px)"
+        bg="blackAlpha.700"
+        border="2px solid"
+        borderColor="green.500"
+        color="white"
+        mb={24}
+        p={6}
+        rounded="md"
+        spacing={12}
+      >
         <Heading as="h1" color="yellow.300" size="2xl">
           Regalos:
         </Heading>

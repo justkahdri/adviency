@@ -1,14 +1,37 @@
-import React, {useContext} from "react";
-import {Flex, IconButton, Text} from "@chakra-ui/react";
+import React, {useContext, useState} from "react";
+import {Stack, IconButton, Text, Avatar, Image} from "@chakra-ui/react";
 import {SmallCloseIcon} from "@chakra-ui/icons";
 
 import {PresentsContext} from "../contexts/PresentsProvider";
 
-const PresentItem = ({name, quantity}: PresentT) => {
+const PresentItem = ({name, quantity, img}: PresentT) => {
   const {removePresent} = useContext(PresentsContext);
+  const [visible, setVisible] = useState(false);
+  let hoverTimer: any;
+
+  const handleHover = (hover: boolean) => {
+    if (hover) {
+      hoverTimer = setTimeout(() => setVisible(true), 1000);
+    } else {
+      clearTimeout(hoverTimer);
+      setVisible(false);
+    }
+  };
 
   return (
-    <Flex _hover={{bg: "whiteAlpha.200"}} align="center" as="article" my={2} px={2} rounded="sm">
+    <Stack
+      _hover={{bg: "whiteAlpha.200"}}
+      align="center"
+      as="article"
+      direction="row"
+      my={2}
+      position="relative"
+      px={2}
+      rounded="sm"
+      onMouseEnter={() => handleHover(true)}
+      onMouseLeave={() => handleHover(false)}
+    >
+      <Avatar name="Kola Tioluwani" size="sm" src={img} />
       <Text as="h4" flex={3}>
         {name}
       </Text>
@@ -25,7 +48,19 @@ const PresentItem = ({name, quantity}: PresentT) => {
         variant="unstyled"
         onClick={() => removePresent(name)}
       />
-    </Flex>
+      <Image
+        alt={name}
+        display={visible ? "block" : "none"}
+        h="30vh"
+        minH="208px"
+        objectFit="cover"
+        position="absolute"
+        src={img}
+        top={10}
+        w="100%"
+        zIndex={2}
+      />
+    </Stack>
   );
 };
 
