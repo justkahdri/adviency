@@ -31,7 +31,7 @@ const PresentItem = ({name, quantity, img}: PresentT) => {
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
     >
-      <Avatar name="Kola Tioluwani" size="sm" src={img} />
+      <Avatar name={name} size="sm" src={img} />
       <Text as="h4" flex={3}>
         {name}
       </Text>
@@ -51,7 +51,9 @@ const PresentItem = ({name, quantity, img}: PresentT) => {
       <Image
         alt={name}
         display={visible ? "block" : "none"}
+        fallbackSrc="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
         h="30vh"
+        left={-2}
         minH="208px"
         objectFit="cover"
         position="absolute"
