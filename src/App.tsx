@@ -1,10 +1,14 @@
 import React from "react";
-import {Flex, Heading, Stack} from "@chakra-ui/react";
+import {Button, Flex, Heading, Stack, Text} from "@chakra-ui/react";
 
 import bg from "./back.jpg";
 import DrawerForm from "./components/DrawerForm";
+import {useGifts} from "./contexts/GiftsProvider";
+import ListItem from "./components/ListItem";
 
 export default function App() {
+  const {gifts, removeAll} = useGifts();
+
   return (
     <Flex
       align="center"
@@ -19,6 +23,14 @@ export default function App() {
         <Heading as="h1">Regalos:</Heading>
 
         <DrawerForm />
+        {gifts.length ? (
+          gifts.map((gift) => <ListItem key={gift.name} {...gift} />)
+        ) : (
+          <>
+            <Text>😔 No hay regalos! 😔</Text>
+            <Button onClick={removeAll}>Borrar todos los regalos 😢</Button>
+          </>
+        )}
       </Stack>
     </Flex>
   );
