@@ -16,7 +16,7 @@ const ListItem = ({name, img_src, quantity, remove}: HydratedGift) => {
       <Text as="h3" flex={3}>
         {name}
       </Text>
-      <Text flex={1}>{quantity}</Text>
+      <Text flex={1}>{quantity} ud.</Text>
       <CloseButton color="green.500" onClick={remove} />
     </Stack>
   );

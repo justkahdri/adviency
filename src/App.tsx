@@ -24,12 +24,16 @@ export default function App() {
 
         <DrawerForm />
         {gifts.length ? (
-          gifts.map((gift) => <ListItem key={gift.name} {...gift} />)
-        ) : (
           <>
-            <Text>😔 No hay regalos! 😔</Text>
-            <Button onClick={removeAll}>Borrar todos los regalos 😢</Button>
+            {gifts.map((gift) => (
+              <ListItem key={gift.name} {...gift} />
+            ))}
+            <Button colorScheme="red" onClick={removeAll}>
+              Borrar todos los regalos 😥
+            </Button>
           </>
+        ) : (
+          <Text>😔 No hay regalos! 😔</Text>
         )}
       </Stack>
     </Flex>
