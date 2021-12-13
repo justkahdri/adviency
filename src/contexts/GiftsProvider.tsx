@@ -7,13 +7,17 @@ const contextDefaultValues: GiftsContextState = {
   addGift: () => {},
   removeGift: () => {},
   removeAll: () => {},
+  updateGift: () => {},
 };
 
 export const GiftsContext = createContext<GiftsContextState>(contextDefaultValues);
 
 const GiftsProvider: FC = ({children}) => {
   const [gifts, setGifts] = useState<HydratedGift[]>(
-    loadFromLocalStorage().map((gift) => ({...gift, remove: () => removeGift(gift.name)})),
+    loadFromLocalStorage().map((gift) => ({
+      ...gift,
+      remove: () => removeGift(gift.name),
+    })),
   );
 
   useEffect(() => {
@@ -22,6 +26,20 @@ const GiftsProvider: FC = ({children}) => {
 
   const removeGift = (giftName: string) =>
     setGifts((gifts) => gifts.filter((g) => g.name !== giftName));
+
+  const updateGift = (giftName: string, new_values: Partial<Gift>) => {
+    setGifts((gifts) =>
+      gifts.map((g) =>
+        g.name !== giftName
+          ? g
+          : {
+              ...g,
+              ...new_values,
+              remove: () => removeGift(new_values.name || g.name),
+            },
+      ),
+    );
+  };
 
   const addGift = (newGift: Gift) => {
     setGifts((gifts) => [
@@ -42,6 +60,7 @@ const GiftsProvider: FC = ({children}) => {
         addGift,
         removeGift,
         removeAll,
+        updateGift,
       }}
     >
       {children}

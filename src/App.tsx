@@ -2,9 +2,9 @@ import React from "react";
 import {Button, Flex, Heading, Stack, Text} from "@chakra-ui/react";
 
 import bg from "./back.jpg";
-import DrawerForm from "./components/DrawerForm";
+import {NewGiftDrawer} from "./components/DrawerForm";
 import {useGifts} from "./contexts/GiftsProvider";
-import ListItem from "./components/ListItem";
+import GiftDisplay from "./components/GiftDisplay";
 
 export default function App() {
   const {gifts, removeAll} = useGifts();
@@ -19,18 +19,20 @@ export default function App() {
       className="App"
       minH="100vh"
     >
-      <Stack align="center" bg="whiteAlpha.800" p={6} width="100%">
+      <Stack align="center" backdropFilter="blur(5px)" bg="whiteAlpha.700" p={6} width="100%">
         <Heading as="h1">Regalos:</Heading>
 
-        <DrawerForm />
         {gifts.length ? (
           <>
             {gifts.map((gift) => (
-              <ListItem key={gift.name} {...gift} />
+              <GiftDisplay key={gift.name} {...gift} />
             ))}
-            <Button colorScheme="red" onClick={removeAll}>
-              Borrar todos los regalos 😥
-            </Button>
+            <Stack direction="row">
+              <Button colorScheme="red" variant="outline" onClick={removeAll}>
+                Borrar todos los regalos 😥
+              </Button>
+              <NewGiftDrawer />
+            </Stack>
           </>
         ) : (
           <Text>😔 No hay regalos! 😔</Text>
