@@ -30,9 +30,10 @@ function DrawerForm() {
       name: target.gift.value,
       quantity: Number(target.quantity.value),
       img_src: target.url.value,
+      receiver: target.receiver.value,
     });
 
-    target.url.value = target.quantity.value = target.gift.value = "";
+    target.url.value = target.quantity.value = target.gift.value = target.receiver.value = "";
     onClose();
   };
 
@@ -49,12 +50,18 @@ function DrawerForm() {
 
           <DrawerBody>
             <Stack as="form" id="new-gift" spacing={5} onSubmit={handleSubmit}>
-              <FormControl isRequired>
-                <FormLabel htmlFor="gift">Regalo: </FormLabel>
-                <Input id="gift" name="gift" placeholder="Por favor ingrese un regalo" />
-              </FormControl>
-              <Stack direction="row">
-                <FormControl isRequired flex={2}>
+              <Stack direction={{base: "column", md: "row"}}>
+                <FormControl isRequired>
+                  <FormLabel htmlFor="gift">Regalo: </FormLabel>
+                  <Input id="gift" name="gift" placeholder="Por favor ingrese un regalo" />
+                </FormControl>
+                <FormControl isRequired>
+                  <FormLabel htmlFor="receiver">Para: </FormLabel>
+                  <Input id="receiver" name="receiver" placeholder="Kahdri" />
+                </FormControl>
+              </Stack>
+              <Stack direction={{base: "column", md: "row"}}>
+                <FormControl flex={2}>
                   <FormLabel htmlFor="url">URL de Imagen: </FormLabel>
                   <Input id="url" name="url" placeholder="https://example.com/some-image" />
                 </FormControl>
@@ -67,10 +74,10 @@ function DrawerForm() {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button colorScheme="yellow" mr={3} variant="outline" onClick={onClose}>
+            <Button colorScheme="grey" mr={3} variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="yellow" form="new-gift" type="submit">
+            <Button colorScheme="green" form="new-gift" type="submit">
               Agregar
             </Button>
           </DrawerFooter>

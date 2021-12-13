@@ -3,6 +3,7 @@ declare global {
     name: string;
     quantity: number;
     img_src: string;
+    receiver: string;
   }
 
   interface HydratedGift extends Gift {
@@ -20,6 +21,7 @@ declare global {
     gift: HTMLInputElement;
     quantity: HTMLInputElement;
     url: HTMLInputElement;
+    receiver: HTMLInputElement;
   }
 }
 

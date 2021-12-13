@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Avatar, AvatarProps, CloseButton, Image, Stack, Text} from "@chakra-ui/react";
 
-const ListItem = ({name, img_src, quantity, remove}: HydratedGift) => {
+const ListItem = ({name, img_src, quantity, receiver, remove}: HydratedGift) => {
   return (
     <Stack
       _hover={{bg: "blackAlpha.200"}}
@@ -13,10 +13,15 @@ const ListItem = ({name, img_src, quantity, remove}: HydratedGift) => {
       width="80%"
     >
       <DisplayableImage name={name} size="sm" src={img_src} />
-      <Text as="h3" flex={3}>
-        {name}
-      </Text>
+      <Stack align="center" direction="row" flex={3}>
+        <Text as="h3">{name}</Text>
+        <Text as="span" color="gray.500" fontSize="sm">
+          - {receiver}
+        </Text>
+      </Stack>
+
       <Text flex={1}>{quantity} ud.</Text>
+
       <CloseButton color="green.500" onClick={remove} />
     </Stack>
   );
