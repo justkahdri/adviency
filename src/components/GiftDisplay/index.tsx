@@ -12,7 +12,7 @@ const GiftDisplay = ({name, img_src, quantity, receiver, remove}: HydratedGift) 
 
   const handleHover = (hover: boolean) => {
     if (hover) {
-      hoverTimer = setTimeout(() => setVisible(true), 1000);
+      hoverTimer = setTimeout(() => setVisible(true), 2000);
     } else {
       clearTimeout(hoverTimer);
       setVisible(false);
@@ -33,12 +33,16 @@ const GiftDisplay = ({name, img_src, quantity, receiver, remove}: HydratedGift) 
       onMouseLeave={() => handleHover(false)}
     >
       <Avatar
-        _before={{content: visible ? "'❌'" : "'🔍'", right: 5, top: 4, position: "absolute"}}
+        _before={!visible ? {content: "'🔍'", right: 5, top: 4, position: "absolute"} : {}}
+        aria-label={`Mostrar imagen de ${name}`}
         cursor="pointer"
         name={name}
         size="sm"
         src={img_src}
-        onClick={() => setVisible((v) => !v)}
+        tabIndex={0}
+        onBlur={() => setVisible(false)}
+        // onClick={() => setVisible((v) => !v)}
+        onFocus={() => setVisible(true)}
       />
       <Stack align="center" direction="row" flex={3}>
         <Text as="h3">{name}</Text>
