@@ -7,7 +7,7 @@ import {useGifts} from "./contexts/GiftsProvider";
 import GiftDisplay from "./components/GiftDisplay";
 
 export default function App() {
-  const {gifts, removeAll} = useGifts();
+  const {gifts, removeAll, removeGift} = useGifts();
 
   return (
     <Flex
@@ -22,21 +22,21 @@ export default function App() {
       <Stack align="center" backdropFilter="blur(5px)" bg="whiteAlpha.700" p={6} width="100%">
         <Heading as="h1">Regalos:</Heading>
 
-        {gifts.length ? (
-          <>
-            {gifts.map((gift) => (
-              <GiftDisplay key={gift.name} {...gift} />
-            ))}
-            <Stack direction="row">
-              <Button colorScheme="red" variant="outline" onClick={removeAll}>
-                Borrar todos los regalos 😥
-              </Button>
-              <NewGiftDrawer />
-            </Stack>
-          </>
+        {gifts.size ? (
+          Array.from(gifts.entries()).map(([id, gift]) => (
+            <GiftDisplay key={id} {...gift} remove={() => removeGift(id)} />
+          ))
         ) : (
-          <Text>😔 No hay regalos! 😔</Text>
+          <Text>Cargando...</Text>
         )}
+        <Stack direction="row">
+          {gifts.size && (
+            <Button colorScheme="red" variant="outline" onClick={removeAll}>
+              Borrar todos los regalos 😥
+            </Button>
+          )}
+          <NewGiftDrawer />
+        </Stack>
       </Stack>
     </Flex>
   );

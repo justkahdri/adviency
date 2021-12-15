@@ -4,7 +4,7 @@ import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
 
 import {EditGiftDrawer} from "../DrawerForm";
 
-const GiftDisplay = ({name, img_src, quantity, receiver, remove}: HydratedGift) => {
+const GiftDisplay = ({gift_id, name, img_src, quantity, receiver, remove}: HydratedGift) => {
   const [visible, setVisible] = useState(false);
   const {isOpen, onOpen, onClose} = useDisclosure();
   let hoverTimer: NodeJS.Timeout;
@@ -70,7 +70,7 @@ const GiftDisplay = ({name, img_src, quantity, receiver, remove}: HydratedGift) 
       <EditGiftDrawer
         finalRef={focusAfterEdit}
         isOpen={isOpen}
-        oldValues={{gift: name, quantity, url: img_src, receiver}}
+        oldValues={{name, quantity, img_src, receiver, gift_id}}
         onClose={onClose}
       />
 

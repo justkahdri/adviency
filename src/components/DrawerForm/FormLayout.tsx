@@ -8,7 +8,7 @@ const FormLayout = ({handleSubmit, oldValues}: GiftFormProps) => {
         <FormControl isRequired>
           <FormLabel htmlFor="gift">Regalo: </FormLabel>
           <Input
-            defaultValue={oldValues?.gift || ""}
+            defaultValue={oldValues?.name || ""}
             id="gift"
             name="gift"
             placeholder="Por favor ingrese un regalo"
@@ -28,7 +28,7 @@ const FormLayout = ({handleSubmit, oldValues}: GiftFormProps) => {
         <FormControl flex={2}>
           <FormLabel htmlFor="url">URL de Imagen: </FormLabel>
           <Input
-            defaultValue={oldValues?.url || ""}
+            defaultValue={oldValues?.img_src || ""}
             id="url"
             name="url"
             placeholder="https://example.com/some-image"

@@ -8,7 +8,7 @@ import CustomDrawer from "./CustomDrawer";
 interface EditGiftProps {
   isOpen: boolean;
   onClose: VoidFunction;
-  oldValues: DefaultValues;
+  oldValues: Gift;
   finalRef: RefObject<any>;
 }
 
@@ -19,7 +19,7 @@ export const EditGiftDrawer = ({isOpen, onClose, oldValues, finalRef}: EditGiftP
     e.preventDefault();
     const target = e.target as GiftEventTarget;
 
-    updateGift(oldValues.gift, {
+    updateGift(oldValues.gift_id, {
       name: target.gift.value,
       quantity: Number(target.quantity.value),
       img_src: target.url.value,

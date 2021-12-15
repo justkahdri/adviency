@@ -1,9 +1,10 @@
 import React, {createContext, useState, useEffect, FC, useContext} from "react";
+import {nanoid} from "nanoid";
 
-import {loadFromLocalStorage} from "../utils";
+import {mockApi, filterGiftsWithMap} from "../utils";
 
 const contextDefaultValues: GiftsContextState = {
-  gifts: [],
+  gifts: new Map(),
   addGift: () => {},
   removeGift: () => {},
   removeAll: () => {},
@@ -13,45 +14,39 @@ const contextDefaultValues: GiftsContextState = {
 export const GiftsContext = createContext<GiftsContextState>(contextDefaultValues);
 
 const GiftsProvider: FC = ({children}) => {
-  const [gifts, setGifts] = useState<HydratedGift[]>(
-    loadFromLocalStorage().map((gift) => ({
-      ...gift,
-      remove: () => removeGift(gift.name),
-    })),
-  );
+  const [gifts, setGifts] = useState<GiftsMap>(contextDefaultValues.gifts);
 
   useEffect(() => {
-    window.localStorage.setItem("gifts", JSON.stringify(gifts));
-  }, [gifts]);
+    mockApi.gifts.list().then((response) => setGifts(filterGiftsWithMap(response)));
+    //   window.localStorage.setItem("gifts", JSON.stringify(gifts));
+  }, []);
 
-  const removeGift = (giftName: string) =>
-    setGifts((gifts) => gifts.filter((g) => g.name !== giftName));
+  const addGift = (newGift: NewGift) => {
+    const newId = nanoid();
 
-  const updateGift = (giftName: string, new_values: Partial<Gift>) => {
-    setGifts((gifts) =>
-      gifts.map((g) =>
-        g.name !== giftName
-          ? g
-          : {
-              ...g,
-              ...new_values,
-              remove: () => removeGift(new_values.name || g.name),
-            },
-      ),
-    );
+    setGifts((gifts) => new Map(gifts.set(newId, {gift_id: newId, ...newGift})));
   };
 
-  const addGift = (newGift: Gift) => {
-    setGifts((gifts) => [
-      ...gifts,
-      {
-        ...newGift,
-        remove: () => removeGift(newGift.name),
-      },
-    ]);
+  const updateGift = (giftId: string, new_values: Partial<Gift>) => {
+    setGifts((gifts) => {
+      const old_values = gifts.get(giftId);
+
+      if (!old_values) {
+        throw new Error(`Gift Id not found in gifts: ${giftId}`);
+      }
+
+      return new Map(gifts.set(giftId, {...old_values, ...new_values}));
+    });
   };
 
-  const removeAll = () => setGifts([]);
+  const removeGift = (giftId: string) =>
+    setGifts((gifts) => {
+      gifts.delete(giftId);
+
+      return new Map(gifts);
+    });
+
+  const removeAll = () => setGifts(new Map());
 
   return (
     <GiftsContext.Provider

@@ -1,24 +1,30 @@
 import {FormEventHandler} from "react";
 
 declare global {
-  type GiftKey = "name" | "quantity" | "img_src" | "receiver";
+  // type GiftKey = "name" | "quantity" | "img_src" | "receiver";
 
-  interface Gift {
+  interface NewGift {
     name: string;
     quantity: number;
     img_src: string;
     receiver: string;
   }
 
+  interface Gift extends NewGift {
+    gift_id: string;
+  }
+
+  type GiftsMap = Map<string, Gift>;
+
   interface HydratedGift extends Gift {
     remove: VoidFunction;
   }
 
   interface GiftsContextState {
-    gifts: HydratedGift[];
-    addGift: (gift: Gift) => void;
-    updateGift: (giftName: string, new_values: Partial<Gift>) => void;
-    removeGift: (giftName: string) => void;
+    gifts: Map<string, Gift>;
+    addGift: (new_gift: NewGift) => void;
+    updateGift: (giftId: string, new_values: Partial<Gift>) => void;
+    removeGift: (giftId: string) => void;
     removeAll: VoidFunction;
   }
 
@@ -29,16 +35,9 @@ declare global {
     receiver: HTMLInputElement;
   }
 
-  interface DefaultValues {
-    receiver: string;
-    gift: string;
-    url: string;
-    quantity: number;
-  }
-
   interface GiftFormProps {
     handleSubmit: FormEventHandler;
-    oldValues?: DefaultValues;
+    oldValues?: Gift;
   }
 }
 

@@ -13,6 +13,7 @@
     "@fontsource/mountains-of-christmas": "^4.5.0",
     "@fontsource/open-sans": "^4.5.2",
     "framer-motion": "^4",
+    "nanoid": "^3.1.30",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-scripts": "^4.0.3"
