@@ -1,0 +1,10 @@
+{
+  "short_name": "Adviency",
+  "name": "Adviency: The same app 24 times",
+  "start_url": "/",
+  "background_color": "#E2E8F0",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#38A169",
+  "description": "Adviency challenge is based on making the same app 24 times, learning by repetition in the process"
+}
