@@ -1,3 +1,14 @@
+export const RANDOM_GIFTS = [
+  "Mantecol",
+  "Chocolate 🍫",
+  "🍬 Caramelos",
+  "Medias 🧦",
+  "Taza tematica",
+  "Pantalones 👖",
+  "Vitel Tone",
+  "Entradas para concierto 🎫🎫",
+];
+
 export const DEFAULT_GIFTS: Gift[] = [
   {
     gift_id: "muggy",
