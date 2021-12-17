@@ -24,6 +24,7 @@ export const EditGiftDrawer = ({isOpen, onClose, oldValues, finalRef}: EditGiftP
       quantity: Number(target.quantity.value),
       img_src: target.url.value,
       receiver: target.receiver.value,
+      cost: Number(target.cost.value),
     });
 
     onClose();
@@ -57,6 +58,7 @@ export const NewGiftDrawer = () => {
       quantity: Number(target.quantity.value),
       img_src: target.url.value,
       receiver: target.receiver.value,
+      cost: Number(target.cost.value),
     });
 
     target.url.value = target.quantity.value = target.gift.value = target.receiver.value = "";

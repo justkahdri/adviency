@@ -54,6 +54,17 @@ const FormLayout = ({handleSubmit, oldValues}: GiftFormProps) => {
           />
         </FormControl>
         <FormControl isRequired flex={1}>
+          <FormLabel htmlFor="quantity">Costo por unidad: </FormLabel>
+          <Input
+            defaultValue={oldValues?.cost || ""}
+            id="cost"
+            name="cost"
+            placeholder="000.00"
+            step={0.01}
+            type="number"
+          />
+        </FormControl>
+        <FormControl isRequired flex={1}>
           <FormLabel htmlFor="quantity">Cantidad: </FormLabel>
           <Input
             defaultValue={oldValues?.quantity || ""}

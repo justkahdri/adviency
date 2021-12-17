@@ -1,12 +1,12 @@
 import React from "react";
-import {Box, Button, Flex, Heading, Link, Skeleton, Stack, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, Heading, Link, Stack, Text} from "@chakra-ui/react";
 
 import {NewGiftDrawer} from "./components/DrawerForm";
 import {useGifts} from "./contexts/GiftsProvider";
-import GiftDisplay from "./components/GiftDisplay";
+import GiftsList from "./components/GiftsList";
 
 export default function App() {
-  const {gifts, removeAll, removeGift} = useGifts();
+  const {gifts, removeAll} = useGifts();
 
   return (
     <Flex className="App" flexDir="column" minH="100vh">
@@ -47,22 +47,7 @@ export default function App() {
           )}
           <NewGiftDrawer />
         </Stack>
-        <Stack
-          align="center"
-          as="section"
-          backdropFilter="blur(2px)"
-          backgroundColor="whiteAlpha.800"
-          py={12}
-          width="100%"
-        >
-          {gifts.size
-            ? Array.from(gifts.entries()).map(([id, gift]) => (
-                <GiftDisplay key={id} {...gift} remove={() => removeGift(id)} />
-              ))
-            : Array(5)
-                .fill("")
-                .map((_, idx) => <Skeleton key={idx} height="32px" width="80%" />)}
-        </Stack>
+        <GiftsList />
       </Stack>
       <Flex bg="green.800" color="white" justify="center" py={2} width="100%">
         <Text>

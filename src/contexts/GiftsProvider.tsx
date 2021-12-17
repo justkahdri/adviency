@@ -5,6 +5,8 @@ import {mockApi, filterGiftsWithMap} from "../utils";
 
 const contextDefaultValues: GiftsContextState = {
   gifts: new Map(),
+  loading: false,
+  error: null,
   addGift: () => {},
   removeGift: () => {},
   removeAll: () => {},
@@ -15,9 +17,19 @@ export const GiftsContext = createContext<GiftsContextState>(contextDefaultValue
 
 const GiftsProvider: FC = ({children}) => {
   const [gifts, setGifts] = useState<GiftsMap>(contextDefaultValues.gifts);
+  const [loading, setLoading] = useState(contextDefaultValues.loading);
+  const [error, setError] = useState(contextDefaultValues.error);
 
   useEffect(() => {
-    mockApi.gifts.list().then((response) => setGifts(filterGiftsWithMap(response)));
+    setLoading(true);
+    mockApi.gifts
+      .list()
+      .then((response) => setGifts(filterGiftsWithMap(response)))
+      .then(() => {
+        setLoading(false);
+        setError(null);
+      })
+      .catch((err) => setError(err.message));
     //   window.localStorage.setItem("gifts", JSON.stringify(gifts));
   }, []);
 
@@ -52,6 +64,8 @@ const GiftsProvider: FC = ({children}) => {
     <GiftsContext.Provider
       value={{
         gifts,
+        error,
+        loading,
         addGift,
         removeGift,
         removeAll,
