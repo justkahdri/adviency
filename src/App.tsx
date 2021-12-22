@@ -1,10 +1,11 @@
 import React from "react";
-import {Box, Button, Flex, Heading, Link, Stack, Text} from "@chakra-ui/react";
+import {Button, Flex, Heading, Link, Stack, Text} from "@chakra-ui/react";
 
 import {NewGiftDrawer} from "./components/DrawerForm";
 import {useGifts} from "./contexts/GiftsProvider";
 import GiftsList from "./components/GiftsList";
 import PreviewModal from "./components/PreviewModal";
+import Player from "./components/Player";
 
 export default function App() {
   const {gifts, removeAll} = useGifts();
@@ -21,17 +22,24 @@ export default function App() {
         },
       }}
     >
-      <Box
+      <Flex
         as="header"
         bg="red.700"
-        borderBottom="1px solid"
-        borderColor="blackAlpha.400"
+        borderBottom="2px solid"
+        borderColor="whiteAlpha.300"
         color="white"
+        justify="space-between"
         minWidth="100%"
-        p={2}
+        px={6}
+        py={2}
       >
         <Heading as="h1">Regalos de Adviency</Heading>
-      </Box>
+        <Stack direction="row">
+          <NewGiftDrawer />
+          <Player url="./christmas_music.mp3" />
+        </Stack>
+      </Flex>
+
       <Stack
         align="center"
         as="main"
@@ -43,6 +51,7 @@ export default function App() {
         spacing={6}
         width="100%"
       >
+        <GiftsList />
         <Stack
           backdropFilter="blur(5px)"
           backgroundColor="whiteAlpha.200"
@@ -56,12 +65,19 @@ export default function App() {
               Borrar todos los regalos 😥
             </Button>
           )}
-          <NewGiftDrawer />
           <PreviewModal />
         </Stack>
-        <GiftsList />
       </Stack>
-      <Flex bg="green.800" color="white" fontSize={14} justify="center" py={2} width="100%">
+
+      <Flex
+        as="footer"
+        bg="green.800"
+        color="white"
+        fontSize={14}
+        justify="center"
+        py={2}
+        width="100%"
+      >
         <Text>
           {"Hecho con 🧡 por "}
           <Link isExternal color="gold" href="https://github.com/justkahdri">

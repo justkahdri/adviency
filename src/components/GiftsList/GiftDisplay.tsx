@@ -1,5 +1,17 @@
 import React, {useRef, MutableRefObject} from "react";
-import {Avatar, Collapse, IconButton, Image, Stack, Text, useDisclosure} from "@chakra-ui/react";
+import {
+  Avatar,
+  Collapse,
+  Flex,
+  IconButton,
+  Image,
+  ListItem,
+  Stack,
+  StackDivider,
+  Text,
+  UnorderedList,
+  useDisclosure,
+} from "@chakra-ui/react";
 import {ChevronDownIcon, DeleteIcon} from "@chakra-ui/icons";
 
 import {DuplicateGiftDrawer, EditGiftDrawer} from "../DrawerForm";
@@ -46,15 +58,6 @@ const GiftDisplay = (props: HydratedGift) => {
           )}
         </Stack>
 
-        <DuplicateGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
-        <EditGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
-        <IconButton
-          aria-label={`Eliminar ${name}`}
-          colorScheme="red"
-          icon={<DeleteIcon />}
-          variant="link"
-          onClick={remove}
-        />
         <IconButton
           aria-label="See details"
           icon={<ChevronDownIcon />}
@@ -64,15 +67,37 @@ const GiftDisplay = (props: HydratedGift) => {
         />
       </Stack>
       <Collapse animateOpacity in={isOpen}>
-        <Stack direction="row">
+        <Stack direction="row" divider={<StackDivider borderColor="blue.500" />} px={12}>
+          <Stack>
+            <UnorderedList>
+              <ListItem>
+                {"Precio por unidad: "}
+                <Text as="span" color="red.600">
+                  ${cost.toLocaleString("es-AR")}
+                </Text>
+              </ListItem>
+
+              <Flex>
+                <DuplicateGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
+                <EditGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
+                <IconButton
+                  aria-label={`Eliminar ${name}`}
+                  colorScheme="red"
+                  icon={<DeleteIcon />}
+                  variant="link"
+                  onClick={remove}
+                />
+              </Flex>
+            </UnorderedList>
+          </Stack>
           <Image
             alt={name}
             fallbackSrc="https://images.unsplash.com/photo-1545470941-1630430ba8c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+            flex={1}
             h="35vh"
             maxH="300px"
             objectFit="cover"
             src={img_src}
-            w="90vw"
           />
         </Stack>
       </Collapse>
