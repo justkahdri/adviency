@@ -5,6 +5,13 @@ const theme = extendTheme({
     heading: "Mountains of Christmas",
     body: "Open Sans",
   },
+  styles: {
+    global: {
+      body: {
+        style: "@media",
+      },
+    },
+  },
   components: {
     Button: {
       baseStyle: {

@@ -4,20 +4,31 @@ import {Box, Button, Flex, Heading, Link, Stack, Text} from "@chakra-ui/react";
 import {NewGiftDrawer} from "./components/DrawerForm";
 import {useGifts} from "./contexts/GiftsProvider";
 import GiftsList from "./components/GiftsList";
+import PreviewModal from "./components/PreviewModal";
 
 export default function App() {
   const {gifts, removeAll} = useGifts();
 
   return (
-    <Flex className="App" flexDir="column" minH="100vh">
+    <Flex
+      className="App"
+      flexDir="column"
+      minH="100vh"
+      sx={{
+        "@media print": {
+          visibility: "hidden",
+          display: "none",
+        },
+      }}
+    >
       <Box
         as="header"
         bg="red.700"
         borderBottom="1px solid"
         borderColor="blackAlpha.400"
         color="white"
+        minWidth="100%"
         p={2}
-        width="100%"
       >
         <Heading as="h1">Regalos de Adviency</Heading>
       </Box>
@@ -46,10 +57,11 @@ export default function App() {
             </Button>
           )}
           <NewGiftDrawer />
+          <PreviewModal />
         </Stack>
         <GiftsList />
       </Stack>
-      <Flex bg="green.800" color="white" justify="center" py={2} width="100%">
+      <Flex bg="green.800" color="white" fontSize={14} justify="center" py={2} width="100%">
         <Text>
           {"Hecho con 🧡 por "}
           <Link isExternal color="gold" href="https://github.com/justkahdri">

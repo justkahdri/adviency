@@ -35,3 +35,11 @@
 - Día 16: La gente está perdiendo la creatividad y necesita una ayuda, agreguemos un botón para obtener un regalo aleatorio para el campo "regalo", podés tener una lista fija de regalos, no es necesario que sean generados.
 
 - Día 17: Nos olvidamos de agregar un campo de precio para nuestros regalos! Aseguremosnos de mostrar el precio correcto tomando en cuenta la cantidad de unidades del regalo.
+
+- Día 18: La gente agrega muchos regalos y necesita saber el total de lo que gastaría, pongamos el total.
+
+- Día 19: La gente quiere hacer el mismo regalo pero a diferentes personas o en diferentes cantidades, agreguemos un botón de duplicar que abra el modal precargado.
+
+- Día 20: Queremos tener una lista de regalos para ir a comprar pero no queremos que tenga los botones o precios, agreguemos un botón de previsualizar que nos abra un modal.
+
+- Día 21: Fuimos a comprar los regalos pero no teniamos datos en el celular, no queremos que le pase a alguien más, agreguemos un botón de imprimir a esa lista.

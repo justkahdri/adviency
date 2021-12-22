@@ -1,6 +1,6 @@
-import React, {FormEvent, MutableRefObject, RefObject} from "react";
+import React, {FormEvent, MutableRefObject, RefObject, useRef} from "react";
 import {Button, IconButton, useDisclosure} from "@chakra-ui/react";
-import {EditIcon} from "@chakra-ui/icons";
+import {EditIcon, CopyIcon} from "@chakra-ui/icons";
 
 import {useGifts} from "../../contexts/GiftsProvider";
 
@@ -54,9 +54,52 @@ export const EditGiftDrawer = ({name, oldValues, finalRef}: EditGiftProps) => {
   );
 };
 
+export const DuplicateGiftDrawer = ({name, oldValues, finalRef}: EditGiftProps) => {
+  const {isOpen, onOpen, onClose} = useDisclosure();
+  const {addGift} = useGifts();
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const target = e.target as GiftEventTarget;
+
+    addGift({
+      name: target.gift.value,
+      quantity: Number(target.quantity.value),
+      img_src: target.url.value,
+      receiver: target.receiver.value,
+      cost: Number(target.cost.value),
+    });
+
+    target.url.value = target.quantity.value = target.gift.value = target.receiver.value = "";
+    onClose();
+  };
+
+  return (
+    <>
+      <IconButton
+        aria-label={`Duplicar ${name}`}
+        colorScheme="purple"
+        icon={<CopyIcon />}
+        variant="link"
+        onClick={onOpen}
+      />
+      <CustomDrawer
+        finalFocusRef={finalRef}
+        handleSubmit={handleSubmit}
+        isOpen={isOpen}
+        oldValues={oldValues}
+        submitMessage="Agregar"
+        onClose={onClose}
+      >
+        Duplicar un Regalo
+      </CustomDrawer>
+    </>
+  );
+};
+
 export const NewGiftDrawer = () => {
   const {isOpen, onOpen, onClose} = useDisclosure();
-  const btnRef = React.useRef() as MutableRefObject<HTMLButtonElement>;
+  const btnRef = useRef() as MutableRefObject<HTMLButtonElement>;
   const {addGift} = useGifts();
 
   const handleSubmit = (e: FormEvent) => {

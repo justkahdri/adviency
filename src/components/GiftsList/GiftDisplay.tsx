@@ -2,7 +2,7 @@ import React, {useRef, MutableRefObject} from "react";
 import {Avatar, Collapse, IconButton, Image, Stack, Text, useDisclosure} from "@chakra-ui/react";
 import {ChevronDownIcon, DeleteIcon} from "@chakra-ui/icons";
 
-import {EditGiftDrawer} from "../DrawerForm";
+import {DuplicateGiftDrawer, EditGiftDrawer} from "../DrawerForm";
 
 const GiftDisplay = (props: HydratedGift) => {
   const {cost, name, img_src, quantity, receiver, remove} = props;
@@ -18,9 +18,9 @@ const GiftDisplay = (props: HydratedGift) => {
       position="relative"
       px={2}
       rounded="sm"
-      width="80vw"
+      width="90vw"
     >
-      <Stack align="center" direction="row" width="100%">
+      <Stack align="center" direction="row" flexWrap="wrap" width="100%">
         <Avatar
           aria-label={`Mostrar imagen de ${name}`}
           name={name}
@@ -46,6 +46,7 @@ const GiftDisplay = (props: HydratedGift) => {
           )}
         </Stack>
 
+        <DuplicateGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
         <EditGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
         <IconButton
           aria-label={`Eliminar ${name}`}

@@ -1,37 +1,10 @@
-import React, {FC} from "react";
-import {Stack, Skeleton, Heading, Text} from "@chakra-ui/react";
+import React from "react";
+import {Skeleton, Heading} from "@chakra-ui/react";
 
 import {useGifts} from "../../contexts/GiftsProvider";
 
 import GiftDisplay from "./GiftDisplay";
-
-interface ListContainerProps {
-  total?: number;
-}
-
-const ListContainer: FC<ListContainerProps> = ({children, total}) => (
-  <Stack
-    align="center"
-    backdropFilter="blur(2px)"
-    backgroundColor="whiteAlpha.800"
-    py={12}
-    width="100%"
-  >
-    {total ? (
-      <>
-        <Stack as="ul" spacing={2}>
-          {children}
-        </Stack>
-        <Stack direction="row" justify="end" width="35%">
-          <Text fontWeight="bold">Total:</Text>
-          <Text color="green">${total.toLocaleString("es-AR")}</Text>
-        </Stack>
-      </>
-    ) : (
-      children
-    )}
-  </Stack>
-);
+import ListContainer from "./ListContainer";
 
 const GiftsList = () => {
   const {gifts, loading, error, removeGift} = useGifts();
