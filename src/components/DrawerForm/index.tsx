@@ -1,18 +1,19 @@
 import React, {FormEvent, MutableRefObject, RefObject} from "react";
-import {Button, useDisclosure} from "@chakra-ui/react";
+import {Button, IconButton, useDisclosure} from "@chakra-ui/react";
+import {EditIcon} from "@chakra-ui/icons";
 
 import {useGifts} from "../../contexts/GiftsProvider";
 
 import CustomDrawer from "./CustomDrawer";
 
 interface EditGiftProps {
-  isOpen: boolean;
-  onClose: VoidFunction;
   oldValues: Gift;
   finalRef: RefObject<any>;
+  name: string;
 }
 
-export const EditGiftDrawer = ({isOpen, onClose, oldValues, finalRef}: EditGiftProps) => {
+export const EditGiftDrawer = ({name, oldValues, finalRef}: EditGiftProps) => {
+  const {isOpen, onOpen, onClose} = useDisclosure();
   const {updateGift} = useGifts();
 
   const handleSubmit = (e: FormEvent) => {
@@ -31,16 +32,25 @@ export const EditGiftDrawer = ({isOpen, onClose, oldValues, finalRef}: EditGiftP
   };
 
   return (
-    <CustomDrawer
-      finalFocusRef={finalRef}
-      handleSubmit={handleSubmit}
-      isOpen={isOpen}
-      oldValues={oldValues}
-      submitMessage="Guardar cambios"
-      onClose={onClose}
-    >
-      Modificar un Regalo
-    </CustomDrawer>
+    <>
+      <IconButton
+        aria-label={`Editar ${name}`}
+        colorScheme="blue"
+        icon={<EditIcon />}
+        variant="link"
+        onClick={onOpen}
+      />
+      <CustomDrawer
+        finalFocusRef={finalRef}
+        handleSubmit={handleSubmit}
+        isOpen={isOpen}
+        oldValues={oldValues}
+        submitMessage="Guardar cambios"
+        onClose={onClose}
+      >
+        Modificar un Regalo
+      </CustomDrawer>
+    </>
   );
 };
 
