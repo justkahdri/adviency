@@ -6,6 +6,7 @@ import {useGifts} from "./contexts/GiftsProvider";
 import GiftsList from "./components/GiftsList";
 import PreviewModal from "./components/PreviewModal";
 import Player from "./components/Player";
+import SnowAnimation from "./components/SnowAnimation";
 
 export default function App() {
   const {gifts, removeAll} = useGifts();
@@ -22,6 +23,7 @@ export default function App() {
         },
       }}
     >
+      <SnowAnimation particles={150} />
       <Flex
         as="header"
         bg="red.700"
@@ -33,7 +35,7 @@ export default function App() {
         px={6}
         py={2}
       >
-        <Heading as="h1">Regalos de Adviency</Heading>
+        <Heading as="h1">❄ Regalos de Adviency ❄</Heading>
         <Stack direction="row">
           <NewGiftDrawer />
           <Player url="./christmas_music.mp3" />

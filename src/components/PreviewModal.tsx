@@ -24,7 +24,7 @@ function PreviewModal() {
 
   return (
     <>
-      <Button onClick={onOpen}>Previsualizar</Button>
+      <Button onClick={onOpen}>❄️ Previsualizar ❄️</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
