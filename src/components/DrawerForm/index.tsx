@@ -120,7 +120,7 @@ export const NewGiftDrawer = () => {
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="green" onClick={onOpen}>
+      <Button ref={btnRef} colorScheme="green" id="add" onClick={onOpen}>
         Agregar un regalo
       </Button>
       <CustomDrawer

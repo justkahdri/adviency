@@ -27,6 +27,7 @@ const GiftDisplay = (props: HydratedGift) => {
       ref={focusAfterEdit}
       _hover={{bg: "blackAlpha.200"}}
       as="li"
+      data-testid="gift-item"
       position="relative"
       px={2}
       rounded="sm"

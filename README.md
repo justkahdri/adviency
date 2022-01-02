@@ -47,3 +47,5 @@
 - Día 22: Levantemos el espíritu navideño agregando un sonido navideño de fondo. No tan alto, tiene que estar deshabilitado por defecto y el usuario puede habilitarlo.
 
 - Día 23: Ya casi es navidad! Agreguemos unos copitos de nieve a nuestra app para darle el último toque navideño. ❄
+
+- Día 24: Agregaremos testing para verificar todo el trabajo hecho hasta ahora.

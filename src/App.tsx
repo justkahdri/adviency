@@ -63,7 +63,7 @@ export default function App() {
           rounded="md"
         >
           {gifts.size && (
-            <Button colorScheme="red" variant="solid" onClick={removeAll}>
+            <Button colorScheme="red" id="remove-all" variant="solid" onClick={removeAll}>
               Borrar todos los regalos 😥
             </Button>
           )}
