@@ -34,13 +34,7 @@ const GiftDisplay = (props: HydratedGift) => {
       width="90vw"
     >
       <Stack align="center" direction="row" flexWrap="wrap" width="100%">
-        <Avatar
-          aria-label={`Mostrar imagen de ${name}`}
-          name={name}
-          size="sm"
-          src={img_src}
-          tabIndex={0}
-        />
+        <Avatar className="gift-preview" name={name} size="sm" src={img_src} tabIndex={0} />
         <Stack align="center" direction="row" flex={10}>
           <Text as="h3">{name}</Text>
           <Text color="gray.500" fontSize="sm">
@@ -68,7 +62,12 @@ const GiftDisplay = (props: HydratedGift) => {
         />
       </Stack>
       <Collapse animateOpacity in={isOpen}>
-        <Stack direction="row" divider={<StackDivider borderColor="blue.500" />} px={12}>
+        <Stack
+          className="details"
+          direction="row"
+          divider={<StackDivider borderColor="blue.500" />}
+          px={12}
+        >
           <Stack>
             <UnorderedList>
               <ListItem>
