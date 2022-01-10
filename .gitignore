@@ -2,3 +2,5 @@ node_modules/
 .vscode
 .codesandbox/
 TODO.md
+cypress/videos
+cypress/screenshots

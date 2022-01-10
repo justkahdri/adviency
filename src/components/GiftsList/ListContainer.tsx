@@ -1,11 +1,12 @@
-import React, {FC} from "react";
-import {Stack, Text} from "@chakra-ui/react";
+import React, {ReactNode} from "react";
+import {SimpleGrid, Stack, Text} from "@chakra-ui/react";
 
 interface ListContainerProps {
   total?: number;
+  children: ReactNode;
 }
 
-const ListContainer: FC<ListContainerProps> = ({children, total}) => (
+const ListContainer = ({children, total}: ListContainerProps) => (
   <Stack
     align="center"
     backdropFilter="blur(2px)"
@@ -15,9 +16,9 @@ const ListContainer: FC<ListContainerProps> = ({children, total}) => (
   >
     {total ? (
       <>
-        <Stack as="ul" spacing={2}>
+        <SimpleGrid columns={{base: 1, sm: 2, md: 3, lg: 4, xl: 6}} px={8} spacing={5}>
           {children}
-        </Stack>
+        </SimpleGrid>
         <Stack direction="row" justify="end" width="35%">
           <Text fontWeight="bold">Total:</Text>
           <Text color="green">${total.toLocaleString("es-AR")}</Text>

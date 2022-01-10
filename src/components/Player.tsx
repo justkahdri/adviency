@@ -1,12 +1,23 @@
 import React, {useState, useEffect, useRef} from "react";
 import {CloseIcon, TriangleUpIcon} from "@chakra-ui/icons";
-import {IconButton} from "@chakra-ui/react";
+import {IconButton, useToast} from "@chakra-ui/react";
 
 const useAudio = (url: string) => {
   const audio = useRef(new Audio(url));
   const [playing, setPlaying] = useState(false);
+  const toast = useToast({
+    title: 'Now playing "A Peaceful Winter"',
+    description: "by Scott Holmes Music",
+    variant: "subtle",
+    isClosable: true,
+    status: "info",
+    position: "bottom-left",
+  });
 
-  const toggle = () => setPlaying(!playing);
+  const toggle = () => {
+    playing ? toast.closeAll() : toast();
+    setPlaying(!playing);
+  };
 
   useEffect(() => {
     playing ? audio.current.play() : audio.current.pause();
@@ -44,4 +55,5 @@ const Player = ({url}: Props) => {
   );
 };
 
+//Scott Holmes Music - A Peaceful Winter
 export default Player;
