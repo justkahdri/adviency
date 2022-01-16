@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Flex, Heading, Link, Stack, Text} from "@chakra-ui/react";
+import {Button, Flex, Heading, Link, Stack, Text, useBreakpointValue} from "@chakra-ui/react";
 
 import {NewGiftDrawer} from "./components/DrawerForm";
 import {useGifts} from "./contexts/GiftsProvider";
@@ -10,12 +10,14 @@ import SnowAnimation from "./components/SnowAnimation";
 
 export default function App() {
   const {gifts, removeAll} = useGifts();
+  const title = useBreakpointValue({base: "Adviency", md: "❄ Regalos de Adviency ❄"});
 
   return (
     <Flex
       className="App"
       flexDir="column"
       minH="100vh"
+      minW="fit-content"
       sx={{
         "@media print": {
           visibility: "hidden",
@@ -30,12 +32,15 @@ export default function App() {
         borderBottom="2px solid"
         borderColor="whiteAlpha.300"
         color="white"
+        direction={{base: "column", sm: "row"}}
         justify="space-between"
-        minWidth="100%"
         px={6}
         py={2}
+        width="100%"
       >
-        <Heading as="h1">❄ Regalos de Adviency ❄</Heading>
+        <Heading as="h1" lineHeight="lg">
+          {title}
+        </Heading>
         <Stack direction="row">
           <NewGiftDrawer />
           <Player url="./christmas_music.mp3" />
@@ -58,7 +63,7 @@ export default function App() {
           backdropFilter="blur(5px)"
           backgroundColor="whiteAlpha.200"
           border="1px groove crimson"
-          direction="row"
+          direction={{base: "column", sm: "row"}}
           p={6}
           rounded="md"
         >

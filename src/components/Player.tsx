@@ -1,12 +1,19 @@
 import React, {useState, useEffect, useRef} from "react";
 import {CloseIcon, TriangleUpIcon} from "@chakra-ui/icons";
-import {IconButton, useToast} from "@chakra-ui/react";
+import {IconButton, Link, useToast} from "@chakra-ui/react";
 
 const useAudio = (url: string) => {
   const audio = useRef(new Audio(url));
   const [playing, setPlaying] = useState(false);
   const toast = useToast({
-    title: 'Now playing "A Peaceful Winter"',
+    title: (
+      <span>
+        {"Now playing "}
+        <Link isExternal href="https://scottholmesmusic.com/tracks/a-peaceful-winter/">
+          &quot;A Peaceful Winter&quot;
+        </Link>
+      </span>
+    ),
     description: "by Scott Holmes Music",
     variant: "subtle",
     isClosable: true,
@@ -26,7 +33,7 @@ const useAudio = (url: string) => {
   useEffect(() => {
     const currentAudio = audio.current;
 
-    currentAudio.volume = 0.4;
+    currentAudio.volume = 0.3;
     currentAudio.addEventListener("ended", () => setPlaying(false));
 
     return () => {
