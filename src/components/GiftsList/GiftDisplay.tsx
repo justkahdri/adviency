@@ -82,7 +82,12 @@ const GiftDisplay = (props: HydratedGift) => {
               zIndex={4}
             />
           </PopoverBody>
-          <PopoverFooter alignItems="center" d="flex" justifyContent="space-evenly">
+          <PopoverFooter
+            alignItems="center"
+            d="flex"
+            data-testid="gift-buttons"
+            justifyContent="space-evenly"
+          >
             <DuplicateGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
             <EditGiftDrawer finalRef={focusAfterEdit} name={name} oldValues={props} />
             <IconButton
